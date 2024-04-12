@@ -45,9 +45,12 @@ const Scene = ({ background = "black", fpsCam = false }) => {
       if (headBone && adamSmasher) {
         // Update the camera position to follow the head bone
         camera.position.copy(adamSmasher.getWorldPosition(new THREE.Vector3()))
-        camera.position.x += 4
-        camera.position.y += 2
+        camera.position.x += 2
+        camera.position.y += 4
         camera.position.z += 2
+        camera.lookAt(headBone.getWorldPosition(new THREE.Vector3()))
+
+        camera.position.copy(adamSmasher.getWorldPosition(new THREE.Vector3()))
         camera.lookAt(headBone.getWorldPosition(new THREE.Vector3()))
       }
     }
@@ -61,10 +64,13 @@ const Scene = ({ background = "black", fpsCam = false }) => {
       if (node.type == "SkinnedMesh") {
         node.castShadow = true
         node.frustumCulled = false
-        //if (!fpsCam) node.frustumCulled = false
-        if (fpsCam && nodeKey == "Adam" ) node.frustumCulled = true
-        if (fpsCam && nodeKey == "Mech" ) node.frustumCulled = true
-        if (fpsCam && nodeKey == "Mowhawk" ) node.frustumCulled = true
+
+        if (fpsCam && nodeKey == "Adam" ) node.visible = false
+        if (fpsCam && nodeKey == "Mech" ) node.visible = false
+        if (fpsCam && nodeKey == "Mowhawk" ) node.visible = false
+
+        if (!fpsCam && nodeKey == "Head") node.visible = false
+        if (!fpsCam && nodeKey == "Suit") node.visible = false
       }
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps

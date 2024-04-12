@@ -58,8 +58,8 @@ function App() {
         <Scene background='#111111' fpsCam />
       </View>
       <View>
-        <PerspectiveCamera makeDefault position={[0,1,4]} fov={35} />
-        <OrbitControls  />
+        <PerspectiveCamera makeDefault position={[0,4,4]} fov={35} />
+        <OrbitControls autoRotate />
         <Scene background='black' />
       </View>
       <audio ref={audioRef} >
