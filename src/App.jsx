@@ -1,17 +1,15 @@
 import './App.css'
-import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera, View } from '@react-three/drei'
 import Scene from './components/Scene'
 import { useEffect, useRef, useState } from 'react'
-
-const matrix = new THREE.Matrix4()
 
 function App() {
   const audioRef = useRef(null)
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
 
+  // Activate audio and video at certain times
   useEffect(()=>{
     if (audioRef.current) {
       audioRef.current.currentTime = 46
@@ -36,7 +34,7 @@ function App() {
     }, 99000);
     const animTimeout = setTimeout(() => {
       window.location.reload()
-    }, 122000);
+    }, 123000);
 
     return () => {
       clearTimeout(videoTimein);
@@ -57,12 +55,12 @@ function App() {
       <View>
         <PerspectiveCamera makeDefault position={[0,4,0]} fov={25} />
         {/* <OrbitControls /> */}
-        <Scene matrix={matrix} background='#111111' fpsCam />
+        <Scene background='#111111' fpsCam />
       </View>
       <View>
         <PerspectiveCamera makeDefault position={[0,1,4]} fov={35} />
         <OrbitControls  />
-        <Scene matrix={matrix} background='black' />
+        <Scene background='black' />
       </View>
       <audio ref={audioRef} >
         <source src="./audio.m4a" type="audio/mpeg" />

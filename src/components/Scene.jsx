@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 
-import { Environment, useAnimations, useGLTF } from "@react-three/drei"
+import { useAnimations, useGLTF } from "@react-three/drei"
 import gltfFile from '../assets/davidVsSmasher.glb?url'
 import { useEffect, useState } from "react"
 import { useSkinnedMeshClone } from './SkinnedMeshClone'
 import { useFrame, useThree } from "@react-three/fiber"
 import * as THREE from 'three'
 
-const Scene = ({ matrix, background = "black", fpsCam = false }) => {
+const Scene = ({ background = "black", fpsCam = false }) => {
   //const { scene, nodes, animations } = useGLTF(gltfFile)
   const { scene, nodes, animations } = useSkinnedMeshClone(gltfFile)
-  const { actions, mixer } = useAnimations(animations, scene)
+  const { actions } = useAnimations(animations, scene)
 
   const { camera } = useThree()
   const [headBone, setHeadBone] = useState(null)
@@ -67,6 +67,7 @@ const Scene = ({ matrix, background = "black", fpsCam = false }) => {
         if (fpsCam && nodeKey == "Mowhawk" ) node.frustumCulled = true
       }
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nodes])
 
   // Update Animation
@@ -81,12 +82,8 @@ const Scene = ({ matrix, background = "black", fpsCam = false }) => {
       <ambientLight intensity={0.9} />
       <directionalLight color="#5555CC" intensity={9} position={[10, 10, -15]} castShadow shadow-mapSize={1024} />
       <directionalLight color="#BB0000" intensity={5.8} position={[-10, 10, +15]} castShadow shadow-mapSize={1024} />
-      {/* <Environment preset="city" /> */}
 
-      <group 
-        //matrixAutoUpdate={false}
-        //onUpdate={(self) => (self.matrix = matrix)}
-      >
+      <group>
         <primitive object={scene} dispose={null} />
       </group>
     
