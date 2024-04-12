@@ -16,11 +16,11 @@ function App() {
       <View>
         <PerspectiveCamera makeDefault position={[0,4,0]} fov={85} />
         {/* <OrbitControls /> */}
-        <Scene matrix={matrix} background='#113311' />
+        <Scene matrix={matrix} background='#111111' fpsCam />
       </View>
       <View>
         <PerspectiveCamera makeDefault position={[0,1,4]} fov={75} />
-        <OrbitControls />
+        <OrbitControls  />
         <Scene matrix={matrix} background='black' />
       </View>
     </div>
