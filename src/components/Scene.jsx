@@ -45,8 +45,9 @@ const Scene = ({ matrix, background = "black", fpsCam = false }) => {
       if (headBone && adamSmasher) {
         // Update the camera position to follow the head bone
         camera.position.copy(adamSmasher.getWorldPosition(new THREE.Vector3()))
+        camera.position.x += 4
         camera.position.y += 2
-        camera.position.z -= 4
+        camera.position.z += 2
         camera.lookAt(headBone.getWorldPosition(new THREE.Vector3()))
       }
     }
@@ -54,8 +55,7 @@ const Scene = ({ matrix, background = "black", fpsCam = false }) => {
 
   // Initial setup
   useEffect(()=>{
-    console.log(scene, nodes)
-    console.log(scene.children[3])
+    //console.log(scene, nodes)
     Object.keys(nodes).forEach(nodeKey => {
       const node = nodes[nodeKey]
       if (node.type == "SkinnedMesh") {
