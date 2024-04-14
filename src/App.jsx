@@ -49,7 +49,7 @@ function App() {
 
   return (
     <div className="container">
-      <Canvas shadows className='canvas'>
+      <Canvas shadows className='canvas' dpr={0.3}>
         <View.Port />
       </Canvas>
       <View>
